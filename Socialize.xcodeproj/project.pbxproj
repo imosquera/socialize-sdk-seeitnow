@@ -23,13 +23,13 @@
 		188019531497DC7400146C99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		188019551497DC7400146C99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		188019571497DC7400146C99 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		1880195B1497DC7400146C99 /* Socialize-Info.plist */ = {isa = PBXFileReference; path = "Socialize-Info.plist"; sourceTree = "<group>"; };
+		1880195B1497DC7400146C99 /* Socialize-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Socialize-Info.plist"; sourceTree = "<group>"; };
 		1880195D1497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1880195F1497DC7400146C99 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		188019611497DC7400146C99 /* Socialize-Prefix.pch */ = {isa = PBXFileReference; path = "Socialize-Prefix.pch"; sourceTree = "<group>"; };
-		188019621497DC7400146C99 /* SocializeAppDelegate.h */ = {isa = PBXFileReference; path = SocializeAppDelegate.h; sourceTree = "<group>"; };
+		188019611497DC7400146C99 /* Socialize-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Socialize-Prefix.pch"; sourceTree = "<group>"; };
+		188019621497DC7400146C99 /* SocializeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocializeAppDelegate.h; sourceTree = "<group>"; };
 		188019631497DC7400146C99 /* SocializeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocializeAppDelegate.m; sourceTree = "<group>"; };
-		188019651497DC7400146C99 /* SocializeViewController.h */ = {isa = PBXFileReference; path = SocializeViewController.h; sourceTree = "<group>"; };
+		188019651497DC7400146C99 /* SocializeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocializeViewController.h; sourceTree = "<group>"; };
 		188019661497DC7400146C99 /* SocializeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocializeViewController.m; sourceTree = "<group>"; };
 		188019691497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocializeViewController_iPhone.xib; sourceTree = "<group>"; };
 		1880196C1497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocializeViewController_iPad.xib; sourceTree = "<group>"; };
