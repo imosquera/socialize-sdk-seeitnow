@@ -1,0 +1,293 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		188019541497DC7400146C99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188019531497DC7400146C99 /* UIKit.framework */; };
+		188019561497DC7400146C99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188019551497DC7400146C99 /* Foundation.framework */; };
+		188019581497DC7400146C99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 188019571497DC7400146C99 /* CoreGraphics.framework */; };
+		1880195E1497DC7400146C99 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1880195C1497DC7400146C99 /* InfoPlist.strings */; };
+		188019601497DC7400146C99 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1880195F1497DC7400146C99 /* main.m */; };
+		188019641497DC7400146C99 /* SocializeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 188019631497DC7400146C99 /* SocializeAppDelegate.m */; };
+		188019671497DC7400146C99 /* SocializeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 188019661497DC7400146C99 /* SocializeViewController.m */; };
+		1880196A1497DC7400146C99 /* SocializeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188019681497DC7400146C99 /* SocializeViewController_iPhone.xib */; };
+		1880196D1497DC7400146C99 /* SocializeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1880196B1497DC7400146C99 /* SocializeViewController_iPad.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1880194F1497DC7400146C99 /* Socialize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Socialize.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		188019531497DC7400146C99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		188019551497DC7400146C99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		188019571497DC7400146C99 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1880195B1497DC7400146C99 /* Socialize-Info.plist */ = {isa = PBXFileReference; path = "Socialize-Info.plist"; sourceTree = "<group>"; };
+		1880195D1497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1880195F1497DC7400146C99 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		188019611497DC7400146C99 /* Socialize-Prefix.pch */ = {isa = PBXFileReference; path = "Socialize-Prefix.pch"; sourceTree = "<group>"; };
+		188019621497DC7400146C99 /* SocializeAppDelegate.h */ = {isa = PBXFileReference; path = SocializeAppDelegate.h; sourceTree = "<group>"; };
+		188019631497DC7400146C99 /* SocializeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocializeAppDelegate.m; sourceTree = "<group>"; };
+		188019651497DC7400146C99 /* SocializeViewController.h */ = {isa = PBXFileReference; path = SocializeViewController.h; sourceTree = "<group>"; };
+		188019661497DC7400146C99 /* SocializeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocializeViewController.m; sourceTree = "<group>"; };
+		188019691497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocializeViewController_iPhone.xib; sourceTree = "<group>"; };
+		1880196C1497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocializeViewController_iPad.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1880194C1497DC7400146C99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				188019541497DC7400146C99 /* UIKit.framework in Frameworks */,
+				188019561497DC7400146C99 /* Foundation.framework in Frameworks */,
+				188019581497DC7400146C99 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		188019441497DC7400146C99 = {
+			isa = PBXGroup;
+			children = (
+				188019591497DC7400146C99 /* Socialize */,
+				188019521497DC7400146C99 /* Frameworks */,
+				188019501497DC7400146C99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		188019501497DC7400146C99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1880194F1497DC7400146C99 /* Socialize.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		188019521497DC7400146C99 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				188019531497DC7400146C99 /* UIKit.framework */,
+				188019551497DC7400146C99 /* Foundation.framework */,
+				188019571497DC7400146C99 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		188019591497DC7400146C99 /* Socialize */ = {
+			isa = PBXGroup;
+			children = (
+				188019621497DC7400146C99 /* SocializeAppDelegate.h */,
+				188019631497DC7400146C99 /* SocializeAppDelegate.m */,
+				188019651497DC7400146C99 /* SocializeViewController.h */,
+				188019661497DC7400146C99 /* SocializeViewController.m */,
+				188019681497DC7400146C99 /* SocializeViewController_iPhone.xib */,
+				1880196B1497DC7400146C99 /* SocializeViewController_iPad.xib */,
+				1880195A1497DC7400146C99 /* Supporting Files */,
+			);
+			path = Socialize;
+			sourceTree = "<group>";
+		};
+		1880195A1497DC7400146C99 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1880195B1497DC7400146C99 /* Socialize-Info.plist */,
+				1880195C1497DC7400146C99 /* InfoPlist.strings */,
+				1880195F1497DC7400146C99 /* main.m */,
+				188019611497DC7400146C99 /* Socialize-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1880194E1497DC7400146C99 /* Socialize */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 188019701497DC7400146C99 /* Build configuration list for PBXNativeTarget "Socialize" */;
+			buildPhases = (
+				1880194B1497DC7400146C99 /* Sources */,
+				1880194C1497DC7400146C99 /* Frameworks */,
+				1880194D1497DC7400146C99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Socialize;
+			productName = Socialize;
+			productReference = 1880194F1497DC7400146C99 /* Socialize.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		188019461497DC7400146C99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 188019491497DC7400146C99 /* Build configuration list for PBXProject "Socialize" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 188019441497DC7400146C99;
+			productRefGroup = 188019501497DC7400146C99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1880194E1497DC7400146C99 /* Socialize */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1880194D1497DC7400146C99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1880195E1497DC7400146C99 /* InfoPlist.strings in Resources */,
+				1880196A1497DC7400146C99 /* SocializeViewController_iPhone.xib in Resources */,
+				1880196D1497DC7400146C99 /* SocializeViewController_iPad.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1880194B1497DC7400146C99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				188019601497DC7400146C99 /* main.m in Sources */,
+				188019641497DC7400146C99 /* SocializeAppDelegate.m in Sources */,
+				188019671497DC7400146C99 /* SocializeViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1880195C1497DC7400146C99 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1880195D1497DC7400146C99 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		188019681497DC7400146C99 /* SocializeViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				188019691497DC7400146C99 /* en */,
+			);
+			name = SocializeViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		1880196B1497DC7400146C99 /* SocializeViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1880196C1497DC7400146C99 /* en */,
+			);
+			name = SocializeViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1880196E1497DC7400146C99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1880196F1497DC7400146C99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		188019711497DC7400146C99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Socialize/Socialize-Prefix.pch";
+				INFOPLIST_FILE = "Socialize/Socialize-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		188019721497DC7400146C99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Socialize/Socialize-Prefix.pch";
+				INFOPLIST_FILE = "Socialize/Socialize-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		188019491497DC7400146C99 /* Build configuration list for PBXProject "Socialize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1880196E1497DC7400146C99 /* Debug */,
+				1880196F1497DC7400146C99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		188019701497DC7400146C99 /* Build configuration list for PBXNativeTarget "Socialize" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				188019711497DC7400146C99 /* Debug */,
+				188019721497DC7400146C99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 188019461497DC7400146C99 /* Project object */;
+}
