@@ -9,6 +9,7 @@
 #import "SocializeAppDelegate.h"
 
 #import "SocializeViewController.h"
+#import <Socialize/Socialize.h>
 
 @implementation SocializeAppDelegate
 
@@ -24,6 +25,12 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Socialize storeSocializeApiKey:@"0a3bc7cd-c269-4587-8687-cd02db56d57f" andSecret:@"8ee55515-4f1f-42ea-b25e-c4eddebf6c02"];
+    
+    [Socialize storeFacebookAppId:@"115622641859087"];
+    [Socialize storeApplicationLink:@"http://itunes.apple.com/us/artist/five-guys/id457494330"];
+
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -65,7 +72,9 @@
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
 }
-
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [Socialize handleOpenURL:url];
+}
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     /*

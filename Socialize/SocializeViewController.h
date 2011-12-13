@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SocializeViewController : UIViewController
+@interface SocializeViewController : UIViewController<UIWebViewDelegate>
 
 @end

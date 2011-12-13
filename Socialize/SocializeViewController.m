@@ -7,9 +7,10 @@
 //
 
 #import "SocializeViewController.h"
-
+#import <Socialize/Socialize.h>
 @implementation SocializeViewController
 
+int loaded = 0;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -21,9 +22,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    UIWebView *webView = [[UIWebView alloc]init];
+    webView.delegate = self;
+    webView.frame = [[UIScreen mainScreen] bounds];
+
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"html/index" ofType:@"html"] isDirectory:NO];
+    
+//    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+
+    [self.view addSubview:webView];
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    loaded++;
+    if ( loaded >=2 ) {
+        SocializeActionBar *actionBar = [SocializeActionBar actionBarWithUrl:@"http://gofiveguys.com/Order/Order.aspx?VendorId=2943" presentModalInController:self];
+        [self.view addSubview:actionBar.view];
+        [actionBar retain];
+    }
+    return YES;
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];
