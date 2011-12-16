@@ -29,7 +29,6 @@ int loaded = 0;
 
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"html/index" ofType:@"html"] isDirectory:NO];
     
-//    NSString *content = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 
@@ -39,7 +38,8 @@ int loaded = 0;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     loaded++;
     if ( loaded >=2 ) {
-        SocializeActionBar *actionBar = [SocializeActionBar actionBarWithUrl:@"http://gofiveguys.com/Order/Order.aspx?VendorId=2943" presentModalInController:self];
+        SocializeActionBar *actionBar = [SocializeActionBar actionBarWithUrl:@"http://www.tmz.com/2011/12/13/scottie-pippen-broke-arizona-state-cbs-lawsuit-nbc/?adid=hero4" presentModalInController:self];
+        actionBar.view.frame = CGRectMake(0,480-88,actionBar.view.frame.size.height, actionBar.view.frame.size.width);
         [self.view addSubview:actionBar.view];
         [actionBar retain];
     }

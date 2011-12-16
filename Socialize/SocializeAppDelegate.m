@@ -28,14 +28,14 @@
     [Socialize storeSocializeApiKey:@"0a3bc7cd-c269-4587-8687-cd02db56d57f" andSecret:@"8ee55515-4f1f-42ea-b25e-c4eddebf6c02"];
     
     [Socialize storeFacebookAppId:@"115622641859087"];
-    [Socialize storeApplicationLink:@"http://itunes.apple.com/us/artist/five-guys/id457494330"];
+    [Socialize storeApplicationLink:@"http://itunes.apple.com/us/artist/telepictures-productions/id299948604"];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         self.viewController = [[[SocializeViewController alloc] initWithNibName:@"SocializeViewController_iPhone" bundle:nil] autorelease];
-    } else {
+    } else {    
         self.viewController = [[[SocializeViewController alloc] initWithNibName:@"SocializeViewController_iPad" bundle:nil] autorelease];
     }
     self.window.rootViewController = self.viewController;
