@@ -35,15 +35,13 @@ int loaded = 0;
     [self.view addSubview:webView];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {    
     loaded++;
     if ( loaded >=2 ) {
-        SocializeActionBar *actionBar = [SocializeActionBar actionBarWithUrl:@"http://www.tmz.com/2011/12/13/scottie-pippen-broke-arizona-state-cbs-lawsuit-nbc/?adid=hero4" presentModalInController:self];
-        actionBar.view.frame = CGRectMake(0,480-88,actionBar.view.frame.size.height, actionBar.view.frame.size.width);
-        [self.view addSubview:actionBar.view];
-        [actionBar retain];
+        SocializeActionBar *actionBar = [[SocializeActionBar actionBarWithUrl:@"http://www.imdb.com/title/tt1327194/" presentModalInController:self] retain];
+        [self.view addSubview:actionBar.view];          
     }
-    return YES;
+    return YES; 
 }
 - (void)viewDidUnload
 {

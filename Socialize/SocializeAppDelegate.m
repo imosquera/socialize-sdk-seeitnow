@@ -28,7 +28,7 @@
     [Socialize storeSocializeApiKey:@"0a3bc7cd-c269-4587-8687-cd02db56d57f" andSecret:@"8ee55515-4f1f-42ea-b25e-c4eddebf6c02"];
     
     [Socialize storeFacebookAppId:@"115622641859087"];
-    [Socialize storeApplicationLink:@"http://itunes.apple.com/us/artist/telepictures-productions/id299948604"];
+    [Socialize storeApplicationLink:@"http://itunes.apple.com/us/artist/imdb/id342792528"];
 
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
