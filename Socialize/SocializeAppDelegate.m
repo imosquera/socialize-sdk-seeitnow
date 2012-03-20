@@ -20,16 +20,27 @@
 {
     [_window release];
     [_viewController release];
-    [super dealloc];
+    [super dealloc];    
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Socialize storeSocializeApiKey:@"0a3bc7cd-c269-4587-8687-cd02db56d57f" andSecret:@"8ee55515-4f1f-42ea-b25e-c4eddebf6c02"];
-    
-    [Socialize storeFacebookAppId:@"115622641859087"];
-    [Socialize storeApplicationLink:@"http://itunes.apple.com/us/artist/imdb/id342792528"];
 
+    
+    [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];  
+    [Socialize storeConsumerKey:@"0a3bc7cd-c269-4587-8687-cd02db56d57f"];
+    [Socialize storeConsumerSecret:@"8ee55515-4f1f-42ea-b25e-c4eddebf6c02"];
+    [Socialize storeFacebookAppId:@"115622641859087"];
+
+    //twitter
+    [Socialize storeTwitterConsumerKey:@"lVf00pZPvezMIgJhPeB0CQ"];
+    [Socialize storeTwitterConsumerSecret:@"CL2KVJEFrIzwyrewddhuhCekYbuC1HW202ZNdqc"];
+
+    
+    [Socialize setEntityLoaderBlock:^(UINavigationController *navigationController, id<SocializeEntity>entity) {
+        NSLog(@"in here!!!");
+    }];
+    
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
@@ -43,6 +54,21 @@
     return YES;
 }
 
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error  
+{  
+    NSLog(@"Error Register Notifications: %@", [error localizedDescription]);
+}  
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken
+{  
+    NSLog(@"all is well!!!");
+    [Socialize registerDeviceToken:deviceToken];
+}
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    if ([Socialize handleNotification:userInfo]) {
+        return;
+    }
+    // Nonsocialize notification handling goes here
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     /*
@@ -58,6 +84,7 @@
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
 }
+
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {

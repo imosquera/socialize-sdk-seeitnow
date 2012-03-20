@@ -38,12 +38,15 @@ int loaded = 0;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {    
     loaded++;
     if ( loaded >=2 ) {
-        SocializeActionBar *actionBar = [[SocializeActionBar actionBarWithUrl:@"http://www.imdb.com/title/tt1327194/" presentModalInController:self] retain];
+        SocializeActionBar *actionBar = [[SocializeActionBar actionBarWithKey:@"http://ww.google.com"
+                                                                         name:@"new name"
+                                                     presentModalInController:self] retain];
+                                              
         [self.view addSubview:actionBar.view];          
     }
     return YES; 
 }
-- (void)viewDidUnload
+- (void)viewDidUnload   
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.

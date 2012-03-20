@@ -22,9 +22,9 @@
 @end
 
 /**Private implementation of <SocializeShare> protocol*/
-@interface SocializeShare : SocializeComment<SocializeShare> {
-    NSInteger _medium;
-}
+@interface SocializeShare : SocializeComment<SocializeShare>
+
++ (SocializeShare*)shareWithEntity:(id<SocializeEntity>)entity text:(NSString*)text medium:(SocializeShareMedium)medium;
 
 /**Share type*/
 @property (nonatomic, assign) NSInteger medium;

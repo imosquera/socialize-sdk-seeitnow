@@ -28,27 +28,108 @@
 #import <UIKit/UIKit.h>
 #import "SocializeBaseViewController.h"
 #import "SocializeActionView.h"
+#import "SocializeActionBarDelegate.h"
+#import "SocializeUIDisplayProxyDelegate.h"
 
 @class SocializeCommentsTableViewController;
 @protocol SocializeView;
 @protocol SocializeEntity;
 @protocol SocializeLike;
 @class MFMailComposeViewController;
+@class MFMessageComposeViewController;
 
-@interface SocializeActionBar : SocializeBaseViewController<SocializeActionViewDelegate>
+/**
+ The Socialize Action Bar
 
-@property (nonatomic, assign) UIViewController* presentModalInViewController;
+ */
+@interface SocializeActionBar : SocializeBaseViewController<SocializeActionViewDelegate, SocializeUIDisplayProxyDelegate>
+
+@property (nonatomic, assign) id<SocializeActionBarDelegate> delegate;
+@property (nonatomic, retain) id displayProxy;
 @property (nonatomic, retain) id<SocializeEntity> entity;
 @property (nonatomic, retain) UIViewController *commentsNavController;
 
 @property (nonatomic, assign) BOOL ignoreNextView;
 @property (nonatomic, retain) UIActionSheet *shareActionSheet;
 @property (nonatomic, retain) MFMailComposeViewController *shareComposer;
+@property (nonatomic, retain) MFMessageComposeViewController *shareTextMessageComposer;
 @property (nonatomic, assign) BOOL noAutoLayout;
 @property (nonatomic, assign, readonly) BOOL initialized;
+@property (nonatomic, retain) UIAlertView *unconfiguredEmailAlert;
 
-+(SocializeActionBar*)actionBarWithUrl:(NSString*)url presentModalInController:(UIViewController*)controller;
+/** @name Initialization */
 
--(id)initWithEntityUrl:(NSString*)url presentModalInController:(UIViewController*)controller;
--(id)initWithEntity:(id<SocializeEntity>)socEntity presentModalInController:(UIViewController*)controller;
+/**
+ Class helper method to create an Action Bar
+ 
+ @param url The URL for the Entity Key
+ @param presentModalInController Modal dialogs and UIActionSheet popups will be presented in this controller and its view
+ 
+ @warning Deprecated. Use actionbarWithKey:name:presentModalInController: instead
+ */
++(SocializeActionBar*)actionBarWithUrl:(NSString*)url presentModalInController:(UIViewController*)controller __attribute__((deprecated));
+
+
+/**
+ Class helper method to create an Action Bar
+ 
+ @param key The Entity Key
+ @param presentModalInController Modal dialogs and UIActionSheet popups will be presented in this controller and its view
+ 
+ @warning Deprecated. Use actionBarWithKey:name:presentModalInController:
+ */
++(SocializeActionBar*)actionBarWithKey:(NSString*)key presentModalInController:(UIViewController*)controller __attribute__((deprecated));
+
+/**
+ Class helper method to create an Action Bar
+ 
+ @param key The Entity Key
+ @param name The Entity Name
+ @param presentModalInController Modal dialogs and UIActionSheet popups will be presented in this controller and its view
+ */
++(SocializeActionBar*)actionBarWithKey:(NSString*)key name:(NSString*)name presentModalInController:(UIViewController*)controller;
+
+
+/**
+ Action Bar Init
+ 
+ @param url The URL for the Entity Key
+ @param presentModalInController Modal dialogs and UIActionSheet popups will be presented in this controller and its view
+ */
+-(id)initWithEntityUrl:(NSString*)url presentModalInController:(UIViewController*)controller __attribute__((deprecated));
+
+/**
+ Action Bar Init
+ 
+ @param key The Entity Key
+ @param presentModalInController Modal dialogs and UIActionSheet popups will be presented in this controller and its view
+ */
+-(id)initWithEntityKey:(NSString*)key presentModalInController:(UIViewController*)controller __attribute__((deprecated));
+
+-(id)initWithEntityKey:(NSString*)key name:(NSString*)name presentModalInController:(UIViewController*)controller;
+
+/**
+ Action Bar Init
+ 
+ @param url The URL for the Entity Key
+ @param presentModalInController Modal dialogs and UIActionSheet popups will be presented in this controller and its view
+ */
+-(id)initWithEntity:(id<SocializeEntity>)entity presentModalInController:(UIViewController*)controller;
+
+/**
+ 
+ @param entity The Socialize entity. It will be created if it does not exist
+ @param display Target for display actions. Either a UIViewController or a SocializeUIDisplay implementation
+ */
+//+(SocializeActionBar*)actionBarWithEntity:(id<SocializeEntity>)entity display:(id)display;
+
+/**
+ Action Bar Init
+ 
+ @param url The URL for the Entity Key
+ @param display Target for display actions. Either a UIViewController or a SocializeUIDisplay implementation
+ */
+-(id)initWithEntity:(id<SocializeEntity>)entity display:(id)display;
+
 @end
+

@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SocializeAuthTableViewCell.h"
-#import "SocializeAuthInfoTableViewCell.h"
 #import "SocializeBaseViewController.h"
 #import "SocializeProfileEditViewController.h"
 #import "SocializeUser.h"
 
+@class SocializeTwitterAuthDataStore;
 
 typedef enum {
     SocializeAuthViewControllerSectionAuthTypes,
@@ -22,7 +21,8 @@ typedef enum {
 
 typedef enum {
     SocializeAuthViewControllerRowFacebook,
-    SocializeAuthViewControllerRowTwitter
+    SocializeAuthViewControllerRowTwitter,
+    SocializeAuthViewControllerNumRows
 } SocializeAuthViewControllerRows;
 
 @protocol SocializeAuthViewControllerDelegate;

@@ -40,8 +40,17 @@
 @class SocializeUserService;
 @class SocializeActivityService;
 @class SocializeShareService;
+@class SocializeDeviceTokenService;
+@class SocializeSubscriptionService;
 @class UIImage;
 @class SocializeFacebook;
+@class SocializeUIShareOptions;
+@class SocializeTwitterAuthOptions;
+
+extern NSString *const kSocializeDisableBrandingKey;
+
+typedef void(^SocializeEntityLoaderBlock)(UINavigationController *navigationController, id<SocializeEntity>entity);
+typedef BOOL(^SocializeCanLoadEntityBlock)(id<SocializeEntity>entity);
 
 /**
 This is a general facade of the   SDK`s API. Through it a third party developers could use the API.
@@ -64,6 +73,8 @@ otherwise you will get a failure.
     SocializeUserService            *_userService;
     SocializeActivityService        *_activityService;
     SocializeShareService           *_shareService;
+    SocializeDeviceTokenService    *_deviceTokenService;
+    SocializeSubscriptionService           *_subscriptionService;
 }
 /**Get access to the authentication service via <SocializeAuthenticateService>.*/
 @property (nonatomic, retain) SocializeAuthenticateService    *authService;
@@ -81,7 +92,16 @@ otherwise you will get a failure.
 @property (nonatomic, retain) SocializeActivityService        *activityService;
 /**Get access to the activity service via <SocializeShareService>.*/
 @property (nonatomic, retain) SocializeShareService           *shareService;
+/**Get access to the activity service via <SocializeNotificationService>.*/
+@property (nonatomic, retain) SocializeDeviceTokenService    *deviceTokenService;
+/**Get access to the activity service via <SocializeSubscriptionService>.*/
+@property (nonatomic, retain) SocializeSubscriptionService *subscriptionService;
 /**Current delegate*/
+
+/**
+ Set callback delegate which responds to protocol <SocializeServiceDelegate> to the service.
+ @param delegate Implemented by user callback delegate which responds to the  <SocializeServiceDelegate> protocol.
+ */
 @property (nonatomic, assign) id<SocializeServiceDelegate> delegate;
 
 /** @name Initialization */
@@ -93,13 +113,65 @@ otherwise you will get a failure.
  */
 -(id)initWithDelegate:(id<SocializeServiceDelegate>)delegate;
 
++ (BOOL)isSocializeNotification:(NSDictionary*)userInfo;
+
++ (BOOL)handleNotification:(NSDictionary*)userInfo;
+
+/**
+ Provide access to the entity loader block
+ 
+ typedef void(^SocializeEntityLoaderBlock)(UINavigationController *navigationController, id<SocializeEntity>entity);
+ */
++(SocializeEntityLoaderBlock)entityLoaderBlock;
+
+/**
+ Set entity loader block
+ 
+ typedef void(^SocializeEntityLoaderBlock)(UINavigationController *navigationController, id<SocializeEntity>entity);
+ 
+ @param entityLoaderBlock This block will be called when Socialize wishes to load an entity
+ */
++(void)setEntityLoaderBlock:(SocializeEntityLoaderBlock)entityLoaderBlock;
+
+/**
+ Provide access to the "don't load entity" block
+ 
+ typedef BOOL(^SocializeCanLoadEntityBlock)(id<SocializeEntity>entity);
+ */
++(SocializeCanLoadEntityBlock)canLoadEntityBlock;
+
+/**
+ Set "don't load entity block"
+ 
+ typedef BOOL(^SocializeEntityUnavailableBlock)(id<SocializeEntity>entity);
+ 
+ You only need to implement this if you wish to selectively disable loading of certain entities from Socialize in your app
+ 
+ @param entityUnavailableBlock Block which should return YES if Socialize should not try to display the given entity in your app, NO otherwise
+ */
++(void)setCanLoadEntityBlock:(SocializeCanLoadEntityBlock)canLoadEntityBlock;
+
 /**
  Save API information to the user defaults.
  
  @param key Socialize API key.
  @param secret Socialize API secret.
  */
-+(void)storeSocializeApiKey:(NSString*) key andSecret: (NSString*)secret;
++(void)storeSocializeApiKey:(NSString*) key andSecret: (NSString*)secret __attribute__((deprecated));
+
+/**
+ Save API consumer key
+ 
+ @param consumerKey Socialize API consumer key.
+ */
++(void)storeConsumerKey:(NSString*)consumerKey;
+
+/**
+ Save API consumer secret
+ 
+ @param consumerSecret Socialize API consumer secret.
+ */
++(void)storeConsumerSecret:(NSString*)consumerSecret;
 
 /**
  Save facebook app id to the user defaults.
@@ -115,18 +187,42 @@ otherwise you will get a failure.
  */
 +(void)storeFacebookLocalAppId:(NSString*)facebookLocalAppID;
 
++(void)storeTwitterConsumerKey:(NSString*)consumerKey;
++(void)storeTwitterConsumerSecret:(NSString*)consumerSecret;
+
++(NSString*)twitterConsumerKey;
++(NSString*)twitterConsumerSecret;
+
+    
 /**
  Save app link to the user defaults.
  
  @param application link(URL)
  */
-+(void)storeApplicationLink:(NSString*)link;
++(void)storeApplicationLink:(NSString*)link   __attribute__((deprecated)) ;
 
 /**
  Remove app link from the user defaults.
  
  */
-+(void)removeApplicationLink;
++(void)removeApplicationLink __attribute__((deprecated));
+
++(void)storeUIErrorAlertsDisabled:(BOOL)disabled;
+
+/**
+ Some aspects of Socialize, such as Facebook wall posts, include information about Socialize. If you do not
+ wish to have this 
+ 
+ @param disableBranding turn off the branding
+ */
++(void)storeDisableBranding:(BOOL)disableBranding;
+
+/**
+ Provide access to the Socialize "disable branding" flag
+ 
+ @return BOOL reflecting whether or not branding is disabled.
+ */
++ (BOOL)disableBranding;
 
 /**
  Provide access to the Socialize API key.
@@ -156,26 +252,12 @@ otherwise you will get a failure.
  */
 +(NSString*) facebookLocalAppId;
 
-
 /**
  Provide access to the app link
  
  @return link to the app
  */
 +(NSString*) applicationLink;
-
-/**
- Provide access to the facebook authorization token after facebook authentication
- 
- @return Facebook authorization token
- */
--(NSString*) receiveFacebookAuthToken;
-
-/**
- Set callback delegate which responds to protocol <SocializeServiceDelegate> to the service.
- @param delegate Implemented by user callback delegate which responds to the  <SocializeServiceDelegate> protocol.
- */
--(void)setDelegate:(id<SocializeServiceDelegate>)delegate;
 
 /** @name  Local in memory object creation */
 
@@ -279,11 +361,43 @@ otherwise you will get a failure.
  Successful call of this method invokes <SocializeServiceDelegate> didAuthenticate: method.
  In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
   
+ @warning Deprecated, use linkToFacebookWithAccessToken: instead
+ 
  @see authenticateWithApiKey:apiSecret:thirdPartyAuthToken:thirdPartyAppId:thirdPartyName:
  @see storeSocializeApiKey:andSecret:
  @see storeFacebookAppId:
  */
--(void)authenticateWithFacebook;
+-(void)authenticateWithFacebook  __attribute__((deprecated));
+
+/**
+ Link
+ */
+- (void)linkToFacebookWithAccessToken:(NSString*)facebookAccessToken expirationDate:(NSDate*)expirationDate;
+
+- (void)linkToTwitterWithAccessToken:(NSString*)twitterAccessToken accessTokenSecret:(NSString*)twitterAccessTokenSecret;
+
+/**
+ Perform a managed Twitter authentication process, including webview callout to twitter auth process if necessary
+ 
+ @see SocializeUIDisplay
+ This variant allows specifying an explicit consumer key and secret
+ */
+//- (void)authenticateViaTwitterWithConsumerKey:(NSString*)consumerKey
+//                               consumerSecret:(NSString*)consumerSecret
+//                               displayHandler:(id)displayHandler;
+
+/**
+ Perform a managed Twitter authentication process, including webview callout to twitter auth process if necessary
+ This variant uses the stored consumer key and secret (used by built-in Socialize UI controls)
+ 
+ @param displayHandler A SocializeUIDisplay for handling the required modal controller presentation and dismissal.
+ 
+ @see SocializeUIDisplay
+ */
+- (void)authenticateViaTwitterWithOptions:(SocializeTwitterAuthOptions*)options
+                                  display:(id)display
+                                  success:(void(^)())success
+                                  failure:(void(^)(NSError *error))failure;
 
 /**
  Authenticate with API key and API secret that were saved in the user defaults.
@@ -325,14 +439,25 @@ otherwise you will get a failure.
                     apiSecret:(NSString*)apiSecret 
           thirdPartyAuthToken:(NSString*)thirdPartyAuthToken
               thirdPartyAppId:(NSString*)thirdPartyAppId
-               thirdPartyName:(SocializeThirdPartyAuthType)thirdPartyName;
+               thirdPartyName:(SocializeThirdPartyAuthType)thirdPartyName  __attribute__((deprecated));
 
 /**
- Check if facebook is configured
+ Link socialize account to third party
  
- @return YES if the app is properly configured for facebook usage
+ @param type The third party to link to
+ @param thirdPartyAuthToken auth token (required for both fb and twitter)
+ @param thirdPartyAuthTokenSecret auth token secret (required for Twitter, unused for Facebook)
+ */ 
+- (void)authenticateWithThirdPartyAuthType:(SocializeThirdPartyAuthType)type
+                       thirdPartyAuthToken:(NSString*)thirdPartyAuthToken
+                 thirdPartyAuthTokenSecret:(NSString*)thirdPartyAuthTokenSecret;
+
+/**
+ Check if the app is configured for any type of third party authentication (currently Facebook or Twitter)
+ 
+ @return YES if available, NO otherwise
  */
-- (BOOL)facebookAvailable;
+- (BOOL)thirdPartyAvailable;
 
 /**
  Check if authentication credentials still valid.
@@ -354,11 +479,16 @@ otherwise you will get a failure.
 -(BOOL)isAuthenticatedWithFacebook;
 
 /**
- Check if an existing facebook session already exists
- 
- @return YES if there is already a valid facebook session for this app
+ @return YES if authenticated with Socialize and linked to Twitter
  */
-- (BOOL)facebookSessionValid;
+-(BOOL)isAuthenticatedWithTwitter;
+
+/**
+ Check if authenticated with a third party
+ @return YES if authenticated with any third party (currently, either Twitter or Facebook)
+ */
+- (BOOL)isAuthenticatedWithThirdParty;
+
 
 /**
  Remove old authentication information.
@@ -366,6 +496,11 @@ otherwise you will get a failure.
  If user would like to re-authenticate he has to remove previous authentication information.
  */
 -(void)removeAuthenticationInfo;
+
+/**
+ Remove just Socialize authentication info (no third party credentials will be wiped)
+ */
+- (void)removeSocializeAuthenticationInfo;
 
 /** @name Like stuff*/
 
@@ -390,6 +525,9 @@ otherwise you will get a failure.
  @param like <SocializeLike> object.
  */
 -(void)unlikeEntity:(id<SocializeLike>)like;
+
+- (void)createLike:(id<SocializeLike>)like;
+- (void)createLikes:(NSArray*)likes;
 
 /**
  Get list of 'likes' for entity.
@@ -428,10 +566,34 @@ otherwise you will get a failure.
  Successful call of this method invokes <[SocializeServiceDelegate service:didCreate:]> method.
  In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
  
+ @param entity An object that conforms to the SocializeEntity protocol
+ @param name Name of the entity
+ */
+-(void)createEntity:(id<SocializeEntity>)entity;
+
+/**
+ Create entity.
+ 
+ Successful call of this method invokes <[SocializeServiceDelegate service:didCreate:]> method.
+ In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
+ 
+ @param entityKey Key for the entity
+ @param name Name of the entity
+ */
+-(void)createEntityWithKey:(NSString*)entityKey name:(NSString*)name;
+
+/**
+ Create entity.
+ 
+ Successful call of this method invokes <[SocializeServiceDelegate service:didCreate:]> method.
+ In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
+ 
  @param entityKey URL of entity
  @param name Name of entity
+ 
+ @warning Deprecated. Use createEntityWithKey:name: instead
  */
--(void)createEntityWithUrl:(NSString*)entityKey andName:(NSString*)name;
+-(void)createEntityWithUrl:(NSString*)entityKey andName:(NSString*)name  __attribute__((deprecated));
 
 /** @name Comment stuff */
 
@@ -472,16 +634,29 @@ otherwise you will get a failure.
 /**
  Create comment for entity.
  
+ @see createCommentForEntityWithKey:comment:longitude:latitude:subscribe:
+ */
+-(void)createCommentForEntityWithKey:(NSString*)url comment:(NSString*)comment longitude:(NSNumber*)lng latitude:(NSNumber*)lat;
+
+/**
+ Create comment for entity.
+ 
  Successful call of this method invokes <[SocializeServiceDelegate service:didCreate:]> method.
  In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
  
- @param url URL to the entity.
+ @param entityKey URL to the entity.
  @param comment Text of the comment.
  @param lng Longitude *float* value. Could be nil. (OPTIONAL)
  @param lat Latitude  *float* value. Could be nil. (OPTIONAL)
- @see createCommentForEntity:comment:longitude:latitude:;
+ @param subscribe YES if you want to subscribe to push notifications for other comments on this entity, NO otherwise
  */
--(void)createCommentForEntityWithKey:(NSString*)url comment:(NSString*)comment longitude:(NSNumber*)lng latitude:(NSNumber*)lat;
+-(void)createCommentForEntityWithKey:(NSString*)entityKey comment:(NSString*)comment longitude:(NSNumber*)lng latitude:(NSNumber*)lat subscribe:(BOOL)subscribe;
+
+/**
+ Create comment for entity.
+ @see createCommentForEntity:comment:longitude:latitude:subscribe:
+ */
+-(void)createCommentForEntity:(id<SocializeEntity>) entity comment: (NSString*) comment longitude:(NSNumber*)lng latitude:(NSNumber*)lat;
 
 /**
  Create comment for entity.
@@ -493,9 +668,24 @@ otherwise you will get a failure.
  @param comment Text of the comment.
  @param lng Longitude *float* value. Could be nil. (OPTIONAL)
  @param lat Latitude  *float* value. Could be nil. (OPTIONAL)
- @see createCommentForEntityWithKey:comment:longitude:latitude:
+ @param subscribe YES if you want to subscribe to push notifications for other comments on this entity, NO otherwise
  */
--(void)createCommentForEntity:(id<SocializeEntity>) entity comment: (NSString*) comment longitude:(NSNumber*)lng latitude:(NSNumber*)lat;
+-(void) createCommentForEntity: (id<SocializeEntity>) entity comment: (NSString*) comment longitude:(NSNumber*)lng latitude:(NSNumber*)lat subscribe:(BOOL)subscribe;
+
+/**
+ * Create a comment (invokes service:didCreate:)
+ */
+- (void)createComment:(id<SocializeComment>)comment;
+
+/**
+ * Create multiple comment (invokes service:didCreate:)
+ */
+- (void)createComments:(NSArray*)comments;
+
+/** Socialize Notification Service **/
+//registers a device token.  Call this method when the developer gets the callback for:
+//didRegisterForRemoteNotificationsWithDeviceToken from the system
++(void)registerDeviceToken:(NSData *)deviceToken;
 
 /** @name View stuff */
 
@@ -524,4 +714,50 @@ otherwise you will get a failure.
 
 -(void)createShareForEntity:(id<SocializeEntity>)entity medium:(SocializeShareMedium)medium  text:(NSString*)text;
 -(void)createShareForEntityWithKey:(NSString*)key medium:(SocializeShareMedium)medium  text:(NSString*)text;
+- (void)createShare:(id<SocializeShare>)share;
+
+
+/**
+ Enable push notifications for new comments on the given entity
+ 
+ Successful call of this method invokes <[SocializeServiceDelegate service:didCreate:]> method.
+ In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
+ 
+ @param entityKey Pushes will be sent for comments on this entity
+ */
+- (void)subscribeToCommentsForEntityKey:(NSString*)entityKey;
+
+/**
+ Disable push notifications for new comments on the given entity
+ 
+ Successful call of this method invokes <[SocializeServiceDelegate service:didCreate:]> method.
+ In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
+ 
+ @param entityKey Pushes will no longer be sent for comments on this entity
+ */
+- (void)unsubscribeFromCommentsForEntityKey:(NSString*)entityKey;
+
+/**
+ Get all subscriptions for the given entity key
+ 
+ Successful call of this method invokes <[SocializeServiceDelegate service:didFetchElements:]> method.
+ In case of error it will be called <[SocializeServiceDelegate service:didFail:]> method.
+ 
+ @param entityKey Get subscriptions for this entity key
+ @param first First index
+ @param last Last index, noninclusive
+ */
+- (void)getSubscriptionsForEntityKey:(NSString*)entityKey first:(NSNumber*)first last:(NSNumber*)last;
+
+- (BOOL)notificationsAreConfigured;
+
++(id)sharedSocialize;
+
+/** Send device token (string) to Socialize servers using the REST API
+ You should not require this function for normal use. Use registerDeviceToken: instead
+ */
+- (void)_registerDeviceTokenString:(NSString*)deviceTokenString;
+
+-(BOOL)isAuthenticatedWithAuthType:(NSString*)authType;
+
 @end

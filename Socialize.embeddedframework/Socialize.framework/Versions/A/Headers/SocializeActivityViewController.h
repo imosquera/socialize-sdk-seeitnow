@@ -13,13 +13,14 @@
 
 @interface SocializeActivityViewController : SocializeTableViewController
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) IBOutlet id delegate;
 @property (nonatomic, assign) NSInteger currentUser;
 @property (nonatomic, retain) IBOutlet SocializeActivityTableViewCell *activityTableViewCell;
 @property (nonatomic, assign) BOOL dontShowNames;
 @property (nonatomic, assign) BOOL dontShowDisclosure;
 
 - (IBAction)viewProfileButtonTouched:(UIButton*)button;
+- (void)fullUserChanged:(id<SocializeFullUser>)fullUser;
 @end
 
 @protocol SocializeActivityViewControllerDelegate <NSObject>

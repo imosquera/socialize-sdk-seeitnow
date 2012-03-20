@@ -17,3 +17,6 @@
 #import "SocializeActionView.h"
 #import "SocializeActionBar.h"
 #import "SocializeObjects.h"
+#import "SocializeActivityDetailsViewController.h"
+#import "SocializeActionBarDelegate.h"
+#import "SocializeTwitterAuthViewController.h"

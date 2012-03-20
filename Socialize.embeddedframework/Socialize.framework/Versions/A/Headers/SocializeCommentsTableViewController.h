@@ -16,6 +16,8 @@
 @class CommentsTableFooterView;
 @class SocializeTableBGInfoView;
 @class ImagesCache;
+@class SocializeBubbleView;
+@class SocializeNotificationToggleBubbleContentView;
 
 /*
 @protocol SocializeCommentsDelegate 
@@ -27,6 +29,7 @@
 */
 
 @class CommentsTableViewCell;
+@protocol SocializeCommentsTableViewControllerDelegate;
 
 @interface SocializeCommentsTableViewController : SocializeTableViewController<UITableViewDataSource, SocializeServiceDelegate, UITableViewDelegate, SocializePostCommentViewControllerDelegate> 
 {
@@ -60,10 +63,26 @@
 @property (retain, nonatomic) ImagesCache               *cache;
 @property (assign, nonatomic) BOOL                      isLoading;
 
+@property (nonatomic, assign) id<SocializeCommentsTableViewControllerDelegate> delegate;
+@property (nonatomic, retain) id<SocializeEntity> entity;
+
+@property (retain, nonatomic) SocializeBubbleView *bubbleView;
+@property (retain, nonatomic) SocializeNotificationToggleBubbleContentView *bubbleContentView;
+
 + (UIViewController*)socializeCommentsTableViewControllerForEntity:(NSString*)entityName;
+
+-(IBAction)subscribedButtonPressed:(id)sender;
 
 -(IBAction)addCommentButtonPressed:(id)sender;
 
+
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil entryUrlString:(NSString*) entryUrlString;
+
+@end
+
+
+@protocol SocializeCommentsTableViewControllerDelegate <NSObject>
+
+- (void)commentsTableViewControllerDidFinish:(SocializeCommentsTableViewController*)commentsTableViewController;
 
 @end
