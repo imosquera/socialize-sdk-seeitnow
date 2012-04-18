@@ -11,6 +11,8 @@
 #import "SocializeViewController.h"
 #import <Socialize/Socialize.h>
 
+#import <Socialize/SocializeCommonDefinitions.h>
+
 @implementation SocializeAppDelegate
 
 @synthesize window = _window;
@@ -26,6 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
+
     
     [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound)];  
     [Socialize storeConsumerKey:@"0a3bc7cd-c269-4587-8687-cd02db56d57f"];
@@ -40,6 +43,8 @@
     [Socialize setEntityLoaderBlock:^(UINavigationController *navigationController, id<SocializeEntity>entity) {
         NSLog(@"in here!!!");
     }];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"blah!" forKey:@"kSocializeDeviceTokenKey"];
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
