@@ -27,7 +27,14 @@ int loaded = 0;
     webView.delegate = self;
     webView.frame = [[UIScreen mainScreen] bounds];
 
-    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"html/index" ofType:@"html"] isDirectory:NO];
+    NSString *path;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        path = @"html_ipad/index";
+    } else {
+        path = @"html/index";
+    }
+    
+    NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:path ofType:@"html"] isDirectory:NO];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];

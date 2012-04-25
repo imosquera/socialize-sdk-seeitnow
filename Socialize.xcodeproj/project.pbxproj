@@ -202,6 +202,7 @@
 		1880196A1497DC7400146C99 /* SocializeViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 188019681497DC7400146C99 /* SocializeViewController_iPhone.xib */; };
 		1880196D1497DC7400146C99 /* SocializeViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1880196B1497DC7400146C99 /* SocializeViewController_iPad.xib */; };
 		1880198C1497F0E500146C99 /* html in Resources */ = {isa = PBXBuildFile; fileRef = 1880198B1497F0E500146C99 /* html */; };
+		AA02F5C715479EAA00A2D7D1 /* html_ipad in Resources */ = {isa = PBXBuildFile; fileRef = AA02F5C615479EAA00A2D7D1 /* html_ipad */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -405,6 +406,7 @@
 		188019691497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocializeViewController_iPhone.xib; sourceTree = "<group>"; };
 		1880196C1497DC7400146C99 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SocializeViewController_iPad.xib; sourceTree = "<group>"; };
 		1880198B1497F0E500146C99 /* html */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html; sourceTree = "<group>"; };
+		AA02F5C615479EAA00A2D7D1 /* html_ipad */ = {isa = PBXFileReference; lastKnownFileType = folder; path = html_ipad; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -657,6 +659,7 @@
 		188019591497DC7400146C99 /* Socialize */ = {
 			isa = PBXGroup;
 			children = (
+				AA02F5C615479EAA00A2D7D1 /* html_ipad */,
 				1880198B1497F0E500146C99 /* html */,
 				188019621497DC7400146C99 /* SocializeAppDelegate.h */,
 				188019631497DC7400146C99 /* SocializeAppDelegate.m */,
@@ -914,6 +917,7 @@
 				183D68C0151D2119006C69A4 /* SocializeRichPushNotificationViewController.xib in Resources */,
 				183D68C1151D2119006C69A4 /* SocializeTableViewController.xib in Resources */,
 				183D68C2151D2119006C69A4 /* SocializeTwitterAuthViewController.xib in Resources */,
+				AA02F5C715479EAA00A2D7D1 /* html_ipad in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
