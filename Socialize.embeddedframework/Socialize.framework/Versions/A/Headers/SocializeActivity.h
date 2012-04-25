@@ -91,13 +91,35 @@
 /**
  Third party destinations
  */
--(NSString *)thirdParties;
+-(NSDictionary *)propagation;
 
 /**
  Third party propagation targets
  @param thirdParties
  */
--(void)setThirdParties:(NSArray*)thirdParties;
+-(void)setPropagation:(NSDictionary*)propagation;
+
+/**
+ Third party propagation info request targets
+ */
+-(NSDictionary *)propagationInfoRequest;
+
+/**
+ Set Third party propagation info request targets
+ @param thirdPartiesInfo
+ */
+-(void)setPropagationInfoRequest:(NSDictionary*)setPropagationInfoRequest;
+
+/**
+ Third party propagation info request targets
+ */
+-(NSDictionary *)propagationInfoResponse;
+
+/**
+ Set Propagation Info Response
+ @param propagationInfoResponse
+ */
+-(void)setPropagationInfoResponse:(NSDictionary*)propagationInfoResponse;
 
 @end
 
@@ -128,7 +150,13 @@
 /** Set\get date of activity.*/
 @property (nonatomic, retain) NSDate*           date;
 
-/* Text to be sent to twitter */
-@property (nonatomic, copy) NSArray *thirdParties;
+/* Propagation dictionaries */
+@property (nonatomic, copy) NSDictionary *propagation;
+
+/* Propagation info-only dictionaries */
+@property (nonatomic, copy) NSDictionary *propagationInfoRequest;
+
+/* Propagation info response dictionary */
+@property (nonatomic, copy) NSArray *propagationInfoResponse;
 
 @end

@@ -46,6 +46,7 @@
 @class SocializeFacebook;
 @class SocializeUIShareOptions;
 @class SocializeTwitterAuthOptions;
+@class SocializeEventService;
 
 extern NSString *const kSocializeDisableBrandingKey;
 
@@ -96,6 +97,8 @@ otherwise you will get a failure.
 @property (nonatomic, retain) SocializeDeviceTokenService    *deviceTokenService;
 /**Get access to the activity service via <SocializeSubscriptionService>.*/
 @property (nonatomic, retain) SocializeSubscriptionService *subscriptionService;
+/**Get access to the activity service via <SocializeEventsService>.*/
+@property (nonatomic, retain) SocializeEventService         *eventsService;
 /**Current delegate*/
 
 /**
@@ -112,6 +115,11 @@ otherwise you will get a failure.
  @param delegate Implemented by user callback delegate which responds to the  <SocializeServiceDelegate> protocol.
  */
 -(id)initWithDelegate:(id<SocializeServiceDelegate>)delegate;
+
+/**
+ Cancel all outstanding requests
+ */
+- (void)cancelAllRequests;
 
 + (BOOL)isSocializeNotification:(NSDictionary*)userInfo;
 
@@ -186,6 +194,14 @@ otherwise you will get a failure.
  @param facebookLocalAppID Facebook App Id
  */
 +(void)storeFacebookLocalAppId:(NSString*)facebookLocalAppID;
+
+/**
+ Save facebook url scheme suffix to the user defaults.
+ This is the new name for the local app id
+ 
+ @param facebookURLSchemeSuffix Facebook URL Scheme suffix
+ */
++(void)storeFacebookURLSchemeSuffix:(NSString*)facebookURLSchemeSuffix;
 
 +(void)storeTwitterConsumerKey:(NSString*)consumerKey;
 +(void)storeTwitterConsumerSecret:(NSString*)consumerSecret;
@@ -701,13 +717,26 @@ otherwise you will get a failure.
  */
 -(void)viewEntity:(id<SocializeEntity>)entity longitude:(NSNumber*)lng latitude: (NSNumber*)lat;
 -(void)viewEntityWithKey:(NSString*)url longitude:(NSNumber*)lng latitude: (NSNumber*)lat;
+- (void)createView:(id<SocializeView>)view;
+- (void)createViews:(NSArray*)views;
 
 -(void)getCurrentUser;
 -(void)getUserWithId:(int)userId;
 -(void)updateUserProfile:(id<SocializeFullUser>)user;
 -(void)updateUserProfile:(id<SocializeFullUser>)user profileImage:(UIImage*)profileImage;
 
+/**
+ * Get likes for a specific user.
+ 
+ @param user user
+ @param entity Optional, only likes for this specific entity will be returned
+ @param first Optional start offset
+ @param last Optional end offset. Can be specified without first.
+ */
+- (void)getLikesForUser:(id<SocializeUser>)user entity:(id<SocializeEntity>)entity first:(NSNumber*)first last:(NSNumber*)last;
+
 -(void)getActivityOfCurrentApplication;
+-(void)getActivityOfCurrentApplicationWithFirst:(NSNumber*)first last:(NSNumber*)last;
 -(void)getActivityOfUser:(id<SocializeUser>)user;
 -(void)getActivityOfUserId:(NSInteger)userId;
 -(void)getActivityOfUserId:(NSInteger)userId first:(NSNumber*)first last:(NSNumber*)last activity:(SocializeActivityType)activityType;
@@ -759,5 +788,43 @@ otherwise you will get a failure.
 - (void)_registerDeviceTokenString:(NSString*)deviceTokenString;
 
 -(BOOL)isAuthenticatedWithAuthType:(NSString*)authType;
+
+/**
+ * Don't require users to authenticate with a 3rd party for social actions
+ */
++ (void)storeAuthenticationNotRequired:(BOOL)authenticationNotRequired;
+
+/**
+ * Whether or not users are required to authenticate with a 3rd party for social actions
+ */
++ (BOOL)authenticationNotRequired;
+
++ (void)storeAnonymousAllowed:(BOOL)anonymousAllowed;
+
++ (BOOL)anonymousAllowed;
+
+/**
+ Get single entity by id
+ 
+ @param entityId The id of the entity (SocializeObject's objectID)
+ */
+- (void)getEntityWithId:(NSNumber*)entityId;
+
+/**
+ Get multiple entities by id
+ 
+ @param entityId The id of the entity (SocializeObject's objectID)
+ */
+- (void)getEntitiesWithIds:(NSArray*)entityIds;
+
+/**
+ Check if the app can actually load this entity
+ */
++ (BOOL)canLoadEntity:(id<SocializeEntity>)entity;
+
+/**
+ Track an event
+ */
+- (void)trackEventWithBucket:(NSString*)bucket values:(NSDictionary*)values;
 
 @end

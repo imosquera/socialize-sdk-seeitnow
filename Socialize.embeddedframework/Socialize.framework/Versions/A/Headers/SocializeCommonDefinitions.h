@@ -42,6 +42,8 @@ extern NSString *const SocializeAuthenticatedUserDidChangeNotification;
 extern NSString *const SocializeCLAuthorizationStatusDidChangeNotification;
 extern NSString *const kSocializeCLAuthorizationStatusKey;
 extern NSString *const kSocializeShouldShareLocationKey;
+extern NSString *const SocializeDidRegisterDeviceTokenNotification;
+extern NSString *const SocializeLikeButtonDidChangeStateNotification;
 
 // Twitter
 extern NSString *const kSocializeTwitterAuthConsumerKey;
@@ -58,6 +60,9 @@ extern NSString *const kSocializeFacebookAuthLocalAppId;
 extern NSString *const kSocializeFacebookAuthAccessToken;
 extern NSString *const kSocializeFacebookAuthExpirationDate;
 extern NSString *const kSocializeFacebookStringForAPI;
+
+extern NSString *const kSocializeAuthenticationNotRequired;
+extern NSString *const kSocializeAnonymousAllowed;
 
 #define SOCIALIZE_API_KEY @"socialize_api_key"
 #define SOCIALIZE_API_SECRET @"socialize_api_secret"
