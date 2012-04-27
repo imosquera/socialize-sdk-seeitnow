@@ -9,6 +9,7 @@
 #import "SocializeViewController.h"
 #import <Socialize/Socialize.h>
 @implementation SocializeViewController
+@synthesize webView = webView_;
 
 int loaded = 0;
 - (void)didReceiveMemoryWarning
@@ -19,27 +20,43 @@ int loaded = 0;
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-
-    UIWebView *webView = [[UIWebView alloc]init];
-    webView.delegate = self;
-    webView.frame = [[UIScreen mainScreen] bounds];
-
+- (void)loadRequestForOrientation:(UIDeviceOrientation)orientation {
     NSString *path;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        path = @"html_ipad/index";
+        
+        if (UIDeviceOrientationIsPortrait(orientation)) {
+            path = @"html_ipad/index";
+        } else {
+            path = @"html_ipad/index_landscape";
+        }
     } else {
-        path = @"html/index";
+        if (UIDeviceOrientationIsPortrait(orientation)) {
+            path = @"html/index";
+        } else {
+            path = @"html/index_landscape";
+        }
     }
     
     NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:path ofType:@"html"] isDirectory:NO];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
+    [self.webView loadRequest:request];
+}
 
-    [self.view addSubview:webView];
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    self.webView = [[UIWebView alloc]init];
+    self.webView.delegate = self;
+    self.webView.frame = [[UIScreen mainScreen] bounds];
+    self.webView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+
+    self.view.backgroundColor = [UIColor blueColor];
+    
+    [self loadRequestForOrientation:UIInterfaceOrientationPortrait];
+    
+    [self.view addSubview:self.webView];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {    
@@ -88,6 +105,11 @@ int loaded = 0;
     } else {
         return YES;
     }
+}
+
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    loaded--;
+    [self loadRequestForOrientation:toInterfaceOrientation];
 }
 
 @end

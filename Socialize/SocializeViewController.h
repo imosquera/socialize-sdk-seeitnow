@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SocializeViewController : UIViewController<UIWebViewDelegate>
-
+@property (nonatomic, retain) UIWebView *webView;
 @end
