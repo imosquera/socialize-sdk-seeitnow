@@ -62,11 +62,8 @@ int loaded = 0;
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {    
     loaded++;
     if ( loaded >=2 ) {
-        SocializeActionBar *actionBar = [[SocializeActionBar actionBarWithKey:@"http://ww.google.com"
-                                                                         name:@"new name"
-                                                     presentModalInController:self] retain];
-                                       
-        [self.view addSubview:actionBar.view];          
+        SZEntity *entity = [SZEntity entityWithKey:@"http://ww.google.com" name:@"new name"];
+        [SZActionBarUtils showActionBarWithViewController:self entity:entity options:nil];
     }
     return YES; 
 }
