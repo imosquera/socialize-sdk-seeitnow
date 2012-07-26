@@ -24,6 +24,12 @@
  */
 -(void) setObjectID:(int)objectID;
 
+- (BOOL)isFromServer;
+- (void)setFromServer:(BOOL)fromServer;
+
+- (void)setServerDictionary:(NSDictionary*)serverDictionary;
+- (NSDictionary*)serverDictionary;
+
 @end
 
 /**
@@ -37,5 +43,8 @@
 
 /**Set/get object unique identificator*/
 @property(nonatomic, assign) int objectID;
+
+@property (nonatomic, assign, getter=isFromServer) BOOL fromServer;
+@property (nonatomic, retain) NSDictionary *serverDictionary;
 
 @end

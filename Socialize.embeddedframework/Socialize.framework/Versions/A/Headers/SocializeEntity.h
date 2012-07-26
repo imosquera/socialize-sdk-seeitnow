@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SocializeObject.h"
+#import "SocializeCommonDefinitions.h"
 
 /**
  Protocol for socialize entity representation.
@@ -65,6 +66,11 @@
  @param meta freeform metadata string */
 -(void)setMeta:(NSString *)meta;
 
+-(NSDictionary*)userActionSummary;
+-(void)setUserActionSummary:(NSDictionary*)userActionSummary;
+
+- (NSString*)displayName;
+
 @end
 
 /**Private implementation of <SocializeEntity> protocol*/
@@ -95,6 +101,14 @@
 /**Entity metadata*/
 @property (nonatomic, copy) NSString * meta;
 
+@property (nonatomic, retain) NSDictionary * userActionSummary;
+
++ (SocializeEntity*)entityWithKey:(NSString*)key;
 + (SocializeEntity*)entityWithKey:(NSString*)key name:(NSString*)name;
 
 @end
+
+NSDictionary *SZServerParamsForEntity(id<SZEntity> entity);
+
+BOOL SZEntityIsLiked(id<SZEntity> entity);
+

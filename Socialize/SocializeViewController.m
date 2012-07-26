@@ -65,7 +65,7 @@ int loaded = 0;
         SocializeActionBar *actionBar = [[SocializeActionBar actionBarWithKey:@"http://ww.google.com"
                                                                          name:@"new name"
                                                      presentModalInController:self] retain];
-                                              
+                                       
         [self.view addSubview:actionBar.view];          
     }
     return YES; 
