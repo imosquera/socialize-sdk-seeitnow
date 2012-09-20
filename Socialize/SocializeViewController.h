@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
+@class SZPathBar;
+
 @interface SocializeViewController : UIViewController<UIWebViewDelegate>
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, retain) SZPathBar* sszBar;
 @end

@@ -29,12 +29,12 @@
 #import "_Socialize.h"
 #import "SocializeKeyboardListener.h"
 #import "_SZUserSettingsViewControllerDelegate.h"
+#import "SZDisplay.h"
 
 @class SocializeLoadingView;
 @class ImagesCache;
 @class _SZUserSettingsViewController;
 
-@protocol SZDisplay;
 @protocol SocializeBaseViewControllerDelegate;
 
 @interface SocializeBaseViewController : UIViewController<SocializeServiceDelegate, UIAlertViewDelegate, UINavigationControllerDelegate, SocializeKeyboardListenerDelegate, SocializeBaseViewControllerDelegate> {
@@ -52,8 +52,10 @@
 @property (nonatomic, retain) SocializeKeyboardListener *keyboardListener;
 @property (nonatomic, copy) void (^completionBlock)();
 @property (nonatomic, copy) void (^cancellationBlock)();
+@property (nonatomic, retain) UITapGestureRecognizer *formsheetDismissGestureRecognizer;
 @property (nonatomic, retain) id<SZDisplay> display;
 
+- (BOOL)isFormsheetModal;
 -(void) showAlertWithText:(NSString*)alertMessage andTitle:(NSString*)title;
 -(void) startLoading;
 -(void) stopLoading;
@@ -70,13 +72,14 @@
             completion:(void(^)(UIImage *image))completionBlock;
 - (void)changeTitleOnCustomBarButton:(UIBarButtonItem*)barButton toText:(NSString*)text;
 - (void)doneButtonPressed:(UIBarButtonItem*)button;
-- (void)cancelButtonPressed:(UIBarButtonItem*)button;
+- (void)cancelButtonPressed:(id)button;
 - (void)settingsButtonPressed:(UIBarButtonItem*)button;
 - (void)notifyDelegateOfCompletion;
 - (void)notifyDelegateOfCancellation;
 - (void)failWithError:(NSError*)error;
 - (void)userSettingsChanged:(id<SZFullUser>)updatedSettings;
 - (void)userChanged:(id<SZFullUser>)newUser;
+- (void)cancel;
 
 @end
 
