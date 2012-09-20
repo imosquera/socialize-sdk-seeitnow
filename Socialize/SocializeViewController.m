@@ -125,7 +125,7 @@ int loaded = 0;
 {    
     if(self.sszBar.menu.expanding)
         self.sszBar.menu.expanding = NO;
-    self.sszBar.menu.startPoint = CGPointMake(self.view.bounds.size.width - 50, self.view.bounds.size.height - 80);
+    self.sszBar.menu.startPoint = CGPointMake(self.view.bounds.size.width - 50, self.view.bounds.size.height - 70);
 }
 
 -(void) dealloc

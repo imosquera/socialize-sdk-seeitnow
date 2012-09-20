@@ -12,10 +12,12 @@
 
 @interface SZFacebookUtils : NSObject
 
++ (NSArray*)requiredPermissions;
 + (void)setAccessToken:(NSString*)accessToken expirationDate:(NSDate*)expirationDate;
 + (void)setAppId:(NSString*)appId;
 + (NSString*)accessToken;
 + (NSDate*)expirationDate;
++ (NSString*)urlSchemeSuffix;
 + (void)setURLSchemeSuffix:(NSString*)suffix;
 + (BOOL)isAvailable;
 + (BOOL)isLinked;

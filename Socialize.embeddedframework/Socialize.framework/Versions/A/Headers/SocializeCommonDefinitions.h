@@ -10,6 +10,12 @@
 #import "SocializeErrorDefinitions.h"
 #import "SocializeVersion.h"
 
+typedef enum {
+    SZResultSortingDefault,
+    SZResultSortingMostRecent = SZResultSortingDefault,
+    SZResultSortingPopularity,
+} SZResultSorting;
+
 /** 
  Third party authentication type 
 */
@@ -42,9 +48,13 @@ typedef enum {
 
 extern NSString *const kSocializeConsumerKey;
 extern NSString *const kSocializeConsumerSecret;
+extern NSString *const kSocializeAccessToken;
+extern NSString *const kSocializeAccessTokenSecret;
 
 // Notifications
 extern NSString *const SocializeAuthenticatedUserDidChangeNotification;
+
+extern NSString *const SZEntityDidChangeNotification;
 
 extern NSString *const SZUserSettingsDidChangeNotification;
 extern NSString *const kSZUpdatedUserSettingsKey;
@@ -77,6 +87,8 @@ extern NSString *const kSocializeFacebookAuthExpirationDate;
 extern NSString *const kSocializeFacebookStringForAPI;
 
 extern NSString *const kSocializeAuthenticationNotRequired;
+extern NSString *const kSocializeLocationSharingDisabled;
+
 extern NSString *const kSocializeAnonymousAllowed;
 
 extern NSString *const kSocializeDontPostToFacebookKey;
@@ -132,3 +144,6 @@ typedef SZLikeButton SocializeLikeButton __attribute__((deprecated("Please use S
 #define BLOCK_CALL_2(blk, arg1, arg2) do { if (blk != nil) blk(arg1, arg2); } while (0)
 #define BLOCK_CALL_3(blk, arg1, arg2, arg3) do { if (blk != nil) blk(arg1, arg2, arg3); } while (0)
 
+#ifndef SZ_USE_DEBUG_PUSH
+#define SZ_USE_DEBUG_PUSH (DEBUG != 0)
+#endif
