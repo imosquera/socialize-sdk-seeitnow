@@ -38,6 +38,8 @@
     //twitter
     [Socialize storeTwitterConsumerKey:@"lVf00pZPvezMIgJhPeB0CQ"];
     [Socialize storeTwitterConsumerSecret:@"CL2KVJEFrIzwyrewddhuhCekYbuC1HW202ZNdqc"];
+    
+    [Socialize storeAnonymousAllowed: YES];
 
     
     [Socialize setEntityLoaderBlock:^(UINavigationController *navigationController, id<SocializeEntity>entity) {
