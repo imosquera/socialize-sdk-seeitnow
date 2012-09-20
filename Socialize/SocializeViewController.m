@@ -8,6 +8,8 @@
 
 #import "SocializeViewController.h"
 #import <Socialize/Socialize.h>
+#import "SZPathBar.h"
+
 @implementation SocializeViewController
 @synthesize webView = webView_;
 
@@ -63,7 +65,17 @@ int loaded = 0;
     loaded++;
     if ( loaded >=2 ) {
         SZEntity *entity = [SZEntity entityWithKey:@"http://ww.google.com" name:@"new name"];
-        [SZActionBarUtils showActionBarWithViewController:self entity:entity options:nil];
+       
+        if(self.sszBar == nil)
+        {
+            self.sszBar = [[[SZPathBar alloc] initWithButtonsMask: SZCommentsButtonMask|SZShareButtonMask|SZLikeButtonMask
+                                                 parentController: self
+                                                           entity: entity]autorelease];
+            
+            self.sszBar.menu.startPoint = CGPointMake(self.view.bounds.size.width - 50, self.view.bounds.size.height - 80);
+            
+            [self.view addSubview:self.sszBar.menu];
+        }
     }
     return YES; 
 }
@@ -109,4 +121,18 @@ int loaded = 0;
     [self loadRequestForOrientation:toInterfaceOrientation];
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{    
+    if(self.sszBar.menu.expanding)
+        self.sszBar.menu.expanding = NO;
+    self.sszBar.menu.startPoint = CGPointMake(self.view.bounds.size.width - 50, self.view.bounds.size.height - 70);
+}
+
+-(void) dealloc
+{
+    self.sszBar = nil;
+    self.webView = nil;
+    
+    [super dealloc];
+}
 @end

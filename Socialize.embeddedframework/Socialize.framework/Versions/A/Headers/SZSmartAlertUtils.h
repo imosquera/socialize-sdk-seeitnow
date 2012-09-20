@@ -7,12 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SZDisplay.h"
 
 @interface SZSmartAlertUtils : NSObject
 
 + (BOOL)isAvailable;
-+ (BOOL)handleNotification:(NSDictionary*)userInfo;
++ (BOOL)handleNotification:(NSDictionary*)userInfo; // __attribute__((deprecated("Please use `openNotification:` (which unconditionally opens the notification), instead")));
 + (BOOL)isSocializeNotification:(NSDictionary*)userInfo;
 + (void)registerDeviceToken:(NSData*)deviceToken;
++ (BOOL)openNotification:(NSDictionary*)userInfo;
 
 @end

@@ -126,6 +126,8 @@ otherwise you will get a failure.
 
 + (BOOL)handleNotification:(NSDictionary*)userInfo;
 
++ (BOOL)openNotification:(NSDictionary*)userInfo;
+
 /**
  Provide access to the entity loader block
  
@@ -672,6 +674,8 @@ otherwise you will get a failure.
 - (void)getCommentsWithIds:(NSArray*)commentIds success:(void(^)(NSArray *comments))success failure:(void(^)(NSError *error))failure;
 - (void)getCommentsWithEntityKey:(NSString*)entityKey success:(void(^)(NSArray *comments))success failure:(void(^)(NSError *error))failure;
 
+- (void)getCommentsWithFirst:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *comments))success failure:(void(^)(NSError *error))failure;
+
 /**
  Create comment for entity.
  
@@ -788,6 +792,7 @@ otherwise you will get a failure.
 - (void)getLikesForEntity:(id<SZEntity>)entity first:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *likes))success failure:(void(^)(NSError *error))failure;
 - (void)createLikes:(NSArray*)likes success:(void(^)(id entityOrEntities))success failure:(void(^)(NSError *error))failure;
 - (void)createLike:(id<SZLike>)like success:(void(^)(id<SZLike> like))success failure:(void(^)(NSError *error))failure;
+- (void)getLikesWithFirst:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *comments))success failure:(void(^)(NSError *error))failure;
 
 -(void)createShareForEntity:(id<SocializeEntity>)entity medium:(SocializeShareMedium)medium  text:(NSString*)text;
 -(void)createShareForEntityWithKey:(NSString*)key medium:(SocializeShareMedium)medium  text:(NSString*)text;
@@ -796,6 +801,7 @@ otherwise you will get a failure.
 -(void)getSharesWithIds:(NSArray*)shareIds success:(void(^)(NSArray *shares))success failure:(void(^)(NSError *error))failure;
 -(void)getShareWithId:(NSNumber*)shareId success:(void(^)(id<SZShare> share))success failure:(void(^)(NSError *error))failure;
 - (void)getSharesForEntityKey:(NSString*)key first:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *shares))success failure:(void(^)(NSError *error))failure;
+- (void)getSharesWithFirst:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *shares))success failure:(void(^)(NSError *error))failure;
 
 /**
  Enable push notifications for new comments on the given entity
@@ -855,9 +861,17 @@ otherwise you will get a failure.
  */
 + (BOOL)authenticationNotRequired;
 
++ (void)storeLocationSharingDisabled:(BOOL)locationSharingDisabled;
+
++ (BOOL)locationSharingDisabled;
+
 + (void)storeAnonymousAllowed:(BOOL)anonymousAllowed;
 
 + (BOOL)anonymousAllowed;
+
++ (void)storeOGLikeEnabled:(BOOL)OGLikedEnabled;
+
++ (BOOL)OGLikeEnabled;
 
 /**
  Get single entity by id
@@ -879,6 +893,8 @@ otherwise you will get a failure.
 
 - (void)getEntitiesWithFirst:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *entities))success failure:(void(^)(NSError *error))failure;
 
+- (void)getEntitiesWithSorting:(SZResultSorting)sorting first:(NSNumber*)first last:(NSNumber*)last success:(void(^)(NSArray *entities))success failure:(void(^)(NSError *error))failure;
+
 - (void)createEntities:(NSArray*)entities success:(void(^)(id entityOrEntities))success failure:(void(^)(NSError *error))failure;
 
 /**
@@ -890,6 +906,7 @@ otherwise you will get a failure.
  Track an event
  */
 - (void)trackEventWithBucket:(NSString*)bucket values:(NSDictionary*)values;
+- (void)trackEventWithBucket:(NSString*)bucket values:(NSDictionary*)values success:(void(^)(id<SZComment> comment))success failure:(void(^)(NSError *error))failure;
 
 - (void)updateUserProfile:(id<SocializeFullUser>)user
              profileImage:(UIImage*)image
