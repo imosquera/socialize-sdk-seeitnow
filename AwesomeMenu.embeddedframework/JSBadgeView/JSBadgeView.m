@@ -63,6 +63,7 @@
 @synthesize badgeTextShadowOffset = _badgeTextShadowOffset;
 @synthesize badgeTextFont = _badgeTextFont;
 @synthesize badgeBackgroundColor = _badgeBackgroundColor;
+@synthesize badgeOverlayColor;
 
 - (void)awakeFromNib
 {

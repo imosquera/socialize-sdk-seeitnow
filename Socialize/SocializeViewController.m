@@ -12,6 +12,7 @@
 
 @implementation SocializeViewController
 @synthesize webView = webView_;
+@synthesize sszBar;
 
 int loaded = 0;
 - (void)didReceiveMemoryWarning
