@@ -67,12 +67,17 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         self.closeRotation = kAwesomeMenuDefaultCloseRotation;
         
         self.menusArray = aMenusArray;
-               
-        // add the "Add" Button.
-        _addButton = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:@"bg-addbutton.png"]
-                                       highlightedImage:[UIImage imageNamed:@"bg-addbutton-highlighted.png"] 
-                                           ContentImage:[UIImage imageNamed:@"icon-plus.png"] 
-                                highlightedContentImage:[UIImage imageNamed:@"icon-plus-highlighted.png"]];
+                
+        NSString* coverName = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ?  @"button-socialize.png" : @"button-socialize-iPhone.png";
+        NSString* imageName = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ?  @"button-socialize-logo.png" : @"button-socialize-logo-iPhone.png";
+        
+        // add the main Button.
+        _addButton = [[AwesomeMenuItem alloc] initWithImage:[UIImage imageNamed:coverName]
+                                       highlightedImage:[UIImage imageNamed:coverName]
+                                           ContentImage:[UIImage imageNamed:imageName]
+                                highlightedContentImage:[UIImage imageNamed:imageName]];
+        
+
         _addButton.delegate = self;
         _addButton.center = self.startPoint;
         
@@ -83,7 +88,8 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         
         self.badge = [[[JSBadgeView alloc] initWithParentView:self.badgePlaceHolder alignment:JSBadgeViewAlignmentTopRight] autorelease];
         self.badge.badgeText = [NSString stringWithFormat:@"%d", 0];
-        self.badge.badgePositionAdjustment = CGPointMake(-10, 8);   
+        CGPoint badgePositionAdjustment = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ? CGPointMake(-10, 8) : CGPointMake(-7, 4);
+        self.badge.badgePositionAdjustment = badgePositionAdjustment;
         
         [self addSubview:self.badgePlaceHolder];
         

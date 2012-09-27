@@ -227,12 +227,6 @@ const NSString* kButtonHandler = @"kButtonHandler";
     {
         _menu = [[AwesomeMenu alloc]initWithFrame:self.controller.view.bounds menus:[self.buttonsWithHandlers valueForKeyPath:@"@unionOfObjects.kButton"]];
         _menu.delegate = self;
-        
-        NSString* imageName = [[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad ?  @"button-socialize.png" : @"button-socialize-iphone.png";
-        _menu.image = [UIImage imageNamed:imageName];
-        _menu.highlightedImage = nil;
-        _menu.contentImage = nil;
-        _menu.highlightedImage = nil;
         _menu.menuWholeAngle = 0;
         _menu.endRadius += 100;
     }

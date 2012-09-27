@@ -303,6 +303,10 @@
 		E47A6B3F160B0E9700659BD6 /* SZBaseShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47A6A62160B0E9700659BD6 /* SZBaseShareViewController.xib */; };
 		E47A6B40160B0E9700659BD6 /* SZStatusImageLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E47A6A63160B0E9700659BD6 /* SZStatusImageLabelView.xib */; };
 		E47A6B41160B0E9700659BD6 /* Socialize.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E47A6A64160B0E9700659BD6 /* Socialize.framework */; };
+		E48EC08816149BBB0087733E /* button-socialize-logo-iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = E48EC08416149BBB0087733E /* button-socialize-logo-iPhone.png */; };
+		E48EC08916149BBB0087733E /* button-socialize-logo-iPhone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E48EC08516149BBB0087733E /* button-socialize-logo-iPhone@2x.png */; };
+		E48EC08A16149BBB0087733E /* button-socialize-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E48EC08616149BBB0087733E /* button-socialize-logo.png */; };
+		E48EC08B16149BBB0087733E /* button-socialize-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E48EC08716149BBB0087733E /* button-socialize-logo@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -612,6 +616,10 @@
 		E47A6A62160B0E9700659BD6 /* SZBaseShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SZBaseShareViewController.xib; sourceTree = "<group>"; };
 		E47A6A63160B0E9700659BD6 /* SZStatusImageLabelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SZStatusImageLabelView.xib; sourceTree = "<group>"; };
 		E47A6A64160B0E9700659BD6 /* Socialize.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Socialize.framework; sourceTree = "<group>"; };
+		E48EC08416149BBB0087733E /* button-socialize-logo-iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-socialize-logo-iPhone.png"; sourceTree = "<group>"; };
+		E48EC08516149BBB0087733E /* button-socialize-logo-iPhone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-socialize-logo-iPhone@2x.png"; sourceTree = "<group>"; };
+		E48EC08616149BBB0087733E /* button-socialize-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-socialize-logo.png"; sourceTree = "<group>"; };
+		E48EC08716149BBB0087733E /* button-socialize-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-socialize-logo@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -708,6 +716,10 @@
 		E47A68FF160B01D000659BD6 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				E48EC08416149BBB0087733E /* button-socialize-logo-iPhone.png */,
+				E48EC08516149BBB0087733E /* button-socialize-logo-iPhone@2x.png */,
+				E48EC08616149BBB0087733E /* button-socialize-logo.png */,
+				E48EC08716149BBB0087733E /* button-socialize-logo@2x.png */,
 				E47A6900160B01D000659BD6 /* bg-addbutton-highlighted.png */,
 				E47A6901160B01D000659BD6 /* bg-addbutton-highlighted@2x.png */,
 				E47A6902160B01D000659BD6 /* bg-addbutton.png */,
@@ -1371,6 +1383,10 @@
 				E47A6B3E160B0E9700659BD6 /* SocializeTableViewController.xib in Resources */,
 				E47A6B3F160B0E9700659BD6 /* SZBaseShareViewController.xib in Resources */,
 				E47A6B40160B0E9700659BD6 /* SZStatusImageLabelView.xib in Resources */,
+				E48EC08816149BBB0087733E /* button-socialize-logo-iPhone.png in Resources */,
+				E48EC08916149BBB0087733E /* button-socialize-logo-iPhone@2x.png in Resources */,
+				E48EC08A16149BBB0087733E /* button-socialize-logo.png in Resources */,
+				E48EC08B16149BBB0087733E /* button-socialize-logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
